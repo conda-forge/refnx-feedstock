@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.6" %}
-{% set sha256 = "f10b6185eb1e5cc6ef07e2477b7c9410d6627b57477799612e418b516eacf3b0" %}
+{%set version = "0.0.7" %}
+{%set sha256 = "d2490402f71764903d97e5e90cae0fe924a0eb6a247d1a1797f90c7297caaaaa" %}
 
 package:
   name: {{ name }}
