@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
 {%set version = "0.0.9" %}
-{%set sha256 = "0faa93dd53be8ef57a88158174178bc389dc3a1ce6088860a7034fae409f9ae9" %}
+{%set sha256 = "cfbf29fc3820f206a6b1412a46838c8107f9b9d1a5f985e6485d9633e5c1c41d" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
