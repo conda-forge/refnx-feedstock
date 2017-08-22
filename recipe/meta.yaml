@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.9" %}
-{%set sha256 = "cfbf29fc3820f206a6b1412a46838c8107f9b9d1a5f985e6485d9633e5c1c41d" %}
+{%set version = "0.0.10" %}
+{%set sha256 = "0408e0101e0adf38d6f7064c95c741980b0c002e356dbee34312a14518c3b0d7" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -32,13 +32,12 @@ requirements:
     - lmfit
     - emcee
     - uncertainties
-    - numdifftools
     - h5py
     - six
 
 test:
   requires:
-    - nose
+    - pytest
 
   imports:
     - refnx
