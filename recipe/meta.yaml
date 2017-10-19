@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.8" %}
-{%set sha256 = "fbee35955aba9785d839118299a65e06a86683544acba391b6fa87e435b9b411" %}
+{%set version = "0.0.11" %}
+{%set sha256 = "363c762f068adfcd4e995b11b2ecaad486a5d44960714d60b7b0fe75fd441317" %}
 
 package:
   name: {{ name }}
@@ -33,10 +33,11 @@ requirements:
     - emcee
     - uncertainties
     - h5py
+    - six
 
 test:
   requires:
-    - nose
+    - pytest
 
   imports:
     - refnx
