@@ -12,20 +12,20 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  number: 4
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - toolchain
     - python
-    - numpy
+    - numpy >=1.11.*
     - cython
     - setuptools
 
   run:
     - python
-    - numpy
+    - numpy >=1.11
     - scipy
     - xlrd
     - pandas
