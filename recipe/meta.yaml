@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.8" %}
-{%set sha256 = "fbee35955aba9785d839118299a65e06a86683544acba391b6fa87e435b9b411" %}
+{%set version = "0.0.12" %}
+{%set sha256 = "48a7878921c220580ff383f57087bd2009c69c718fcd0ca4871f4547095fddbb" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -36,7 +36,7 @@ requirements:
 
 test:
   requires:
-    - nose
+    - pytest
 
   imports:
     - refnx
