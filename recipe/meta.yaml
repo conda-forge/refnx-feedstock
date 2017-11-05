@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.6" %}
-{% set sha256 = "f10b6185eb1e5cc6ef07e2477b7c9410d6627b57477799612e418b516eacf3b0" %}
+{%set version = "0.0.12" %}
+{% set sha256 = "48a7878921c220580ff383f57087bd2009c69c718fcd0ca4871f4547095fddbb" %}
 
 package:
   name: {{ name }}
@@ -36,7 +36,7 @@ requirements:
 
 test:
   requires:
-    - nose
+    - pytest
 
   imports:
     - refnx
