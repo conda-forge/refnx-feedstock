@@ -1,6 +1,6 @@
 {%set name = "refnx" %}
-{%set version = "0.0.12" %}
-{%set sha256 = "48a7878921c220580ff383f57087bd2009c69c718fcd0ca4871f4547095fddbb" %}
+{%set version = "0.0.13" %}
+{%set sha256 = "1bda80bbed8864f6f0dcb3267940d88dfe0575b110f6ec0f3317b30b303ea007" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 5
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -29,7 +29,6 @@ requirements:
     - scipy
     - xlrd
     - pandas
-    - emcee
     - uncertainties
     - h5py
 
