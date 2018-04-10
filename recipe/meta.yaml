@@ -29,7 +29,6 @@ requirements:
     - scipy
     - xlrd
     - pandas
-    - emcee
     - uncertainties
     - h5py
 
