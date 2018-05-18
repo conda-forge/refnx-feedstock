@@ -1,6 +1,6 @@
-{%set name = "refnx" %}
-{%set version = "0.0.13" %}
-{%set sha256 = "1bda80bbed8864f6f0dcb3267940d88dfe0575b110f6ec0f3317b30b303ea007" %}
+{% set name = "refnx" %}
+{% set version = "0.0.14" %}
+{% set sha256 = "c7f8cc0221a2fa955b6a318d66d34cbdee03d958492808d9971931421be67b8b" %}
 
 package:
   name: {{ name }}
@@ -13,7 +13,6 @@ source:
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
@@ -31,6 +30,10 @@ requirements:
     - pandas
     - uncertainties
     - h5py
+    - matplotlib
+    - ipywidgets
+    - traitlets
+    - six
 
 test:
   requires:
