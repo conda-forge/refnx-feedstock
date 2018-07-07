@@ -12,19 +12,21 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
-    - toolchain
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - python
-    - numpy 1.11.*
+    - numpy
     - cython
     - setuptools
 
   run:
     - python
-    - numpy >=1.11
+    - {{ pin_compatible('numpy') }}
     - scipy
     - xlrd
     - pandas
