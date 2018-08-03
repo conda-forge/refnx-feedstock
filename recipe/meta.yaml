@@ -36,6 +36,8 @@ requirements:
     - ipywidgets
     - traitlets
     - six
+    - corner
+    - tqdm
 
 test:
   requires:
