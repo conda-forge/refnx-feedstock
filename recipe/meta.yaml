@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.0" %}
-{% set sha256 = "74a094de9dd888be4f2bc897b396e4918e3f145ff6376a1b2175a0b46f8e9f5c" %}
+{% set version = "0.1.1" %}
+{% set sha256 = "f4dbe5642d1bc3298c9f4a3040b35df217a685206dc48067c00086f598b898d9" %}
 
 package:
   name: {{ name }}
@@ -16,6 +16,7 @@ build:
 
 requirements:
   build:
+    - python >= 3.5
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
@@ -25,23 +26,22 @@ requirements:
     - setuptools
 
   run:
-    - python
+    - python >= 3.5
     - {{ pin_compatible('numpy') }}
     - scipy
     - xlrd
     - pandas
-    - uncertainties
     - h5py
     - matplotlib
     - ipywidgets
     - traitlets
-    - six
     - corner
     - tqdm
 
 test:
   requires:
     - pytest
+    - uncertainties
   commands:
     - py.test --pyargs refnx -v --duration=0
 
