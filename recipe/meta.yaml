@@ -16,7 +16,7 @@ build:
 
 requirements:
   build:
-    - python >= 3.5
+    - python>=3.5
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
@@ -26,7 +26,7 @@ requirements:
     - setuptools
 
   run:
-    - python >= 3.5
+    - python>=3.5
     - {{ pin_compatible('numpy') }}
     - scipy
     - xlrd
