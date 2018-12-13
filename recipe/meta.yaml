@@ -12,7 +12,9 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 2
+
+  skip: true  # [py27]
 
   skip: true  # [py27]
 
