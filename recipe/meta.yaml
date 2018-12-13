@@ -14,10 +14,11 @@ source:
 build:
   number: 0
 
+  skip: true  # [py27]
+
 requirements:
   build:
-    skip: true  # [py27]
-    - python >=3.5
+    - python
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
@@ -27,7 +28,7 @@ requirements:
     - setuptools
 
   run:
-    - python>=3.5
+    - python
     - {{ pin_compatible('numpy') }}
     - scipy
     - xlrd
