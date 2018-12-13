@@ -18,7 +18,6 @@ build:
 
 requirements:
   build:
-    - python
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
