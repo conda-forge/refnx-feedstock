@@ -44,6 +44,7 @@ requirements:
 test:
   requires:
     - pytest
+    - nose
     - uncertainties
     - scipy>=1.2.0
   commands:
