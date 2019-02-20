@@ -45,6 +45,7 @@ test:
   requires:
     - pytest
     - uncertainties
+    - scipy>=1.2.0
   commands:
     - py.test --pyargs refnx -v --duration=0
 
