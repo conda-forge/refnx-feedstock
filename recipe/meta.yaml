@@ -27,6 +27,7 @@ requirements:
     - {{ cdt('libxdamage') }}  # [linux]
     - {{ cdt('libxxf86vm') }}  # [linux]
     - {{ cdt('mesa-libGL') }}  # [linux]
+    - {{ cdt('libxfixes') }}  # [linux]
 
   host:
     - python
