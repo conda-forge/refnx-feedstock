@@ -26,12 +26,14 @@ requirements:
     - {{ cdt('libselinux') }}  # [linux]
     - {{ cdt('libxdamage') }}  # [linux]
     - {{ cdt('libxxf86vm') }}  # [linux]
+    - {{ cdt('mesa-gl') }} # [linux]
 
   host:
     - python
     - numpy
     - cython
     - setuptools
+    - pyqt >=5
 
   run:
     - python
@@ -45,13 +47,12 @@ requirements:
     - traitlets
     - corner
     - tqdm
-    # This is here to avoid mixing default and conda-forge
-    # qt/pyqt packages.
-    - pyqt >=5.6,<5.7
+    - pyqt >=5
     - periodictable
 
 test:
   requires:
+    - {{ cdt('mesa-gl') }} # [linux]
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
     - {{ cdt('libselinux') }}  # [linux]
