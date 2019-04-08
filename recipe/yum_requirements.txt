@@ -3,3 +3,5 @@ mesa-dri-drivers
 libselinux
 libXdamage
 libXxf86vm
+mesa-common-dev
+libglu1-mesa-dev
