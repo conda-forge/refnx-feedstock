@@ -62,7 +62,7 @@ test:
     - py.test --pyargs refnx -v --duration=0  # [osx and win]
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
     # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - py.test refnx/refnx/analysis refnx/refnx/dataset refnx/refnx/util refnx/refnx/reflect/test refnx/refnx/_lib # [linux]
+    - py.test refnx/refnx/analysis refnx/refnx/dataset refnx/refnx/util refnx/refnx/reflect/test refnx/refnx/_lib  # [linux]
 
   imports:
     - refnx
