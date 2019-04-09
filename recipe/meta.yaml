@@ -57,10 +57,8 @@ test:
     - uncertainties
     - scipy>=1.2.0
   commands:
-    - export DISPLAY=:99.0
-    - bash -e /etc/init.d/xvfb start
-    - sleep 3
-    - py.test --pyargs refnx -v --duration=0
+    - DISPLAY=localhost:1.0 xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    - py.test --pyargs refnx -v --duration=0  # [win and osx]
 
   imports:
     - refnx
