@@ -38,6 +38,14 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - scipy
+
+test:
+  requires:
+    - pytest
+    - pytest-qt
+    - nose
+    - uncertainties
+    - scipy>=1.2.0
     - xlrd
     - pandas
     - h5py
@@ -49,13 +57,6 @@ requirements:
     - pyqt >=5
     - periodictable
 
-test:
-  requires:
-    - pytest
-    - pytest-qt
-    - nose
-    - uncertainties
-    - scipy>=1.2.0
   commands:
     - DISPLAY=localhost:1.0 xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
     - py.test --pyargs refnx -v --duration=0  # [win and osx]
