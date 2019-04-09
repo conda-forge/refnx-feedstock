@@ -56,10 +56,12 @@ test:
     - tqdm
     - pyqt >=5
     - periodictable
+    - pytest-xvfb
 
   commands:
-    - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - py.test --pyargs refnx -v --duration=0  # [win and osx]
+    - export MPLBACKEND=agg  # [osx and linux]
+    # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    - py.test --pyargs refnx -v --duration=0
 
   imports:
     - refnx
