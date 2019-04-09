@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.4" %}
-{% set sha256 = "57d36fc38a1d1c46a849c3033a71d13da6e480b7b2535b095756cde5ec55dd07" %}
+{% set version = "0.1.5" %}
+{% set sha256 = "b117a3bf62a12deb6518cff5191021b1a9538f476f0abe3d60985a3136a6ccfa" %}
 
 
 package:
@@ -21,16 +21,31 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    - {{ cdt('libselinux') }}  # [linux]
+    - {{ cdt('libxdamage') }}  # [linux]
+    - {{ cdt('libxxf86vm') }}  # [linux]
+
   host:
     - python
     - numpy
     - cython
     - setuptools
+    - xorg-libxfixes  # [linux]
 
   run:
     - python
     - {{ pin_compatible('numpy') }}
     - scipy
+
+test:
+  requires:
+    - pytest
+    - pytest-qt
+    - nose
+    - uncertainties
+    - scipy>=1.2.0
     - xlrd
     - pandas
     - h5py
@@ -39,15 +54,16 @@ requirements:
     - traitlets
     - corner
     - tqdm
+    # try using pyqt from defaults instead of conda-forge
+    - pyqt >=5  # [osx and win]
+    - periodictable
 
-test:
-  requires:
-    - pytest
-    - nose
-    - uncertainties
-    - scipy>=1.2.0
   commands:
-    - py.test --pyargs refnx -v --duration=0
+    - export MPLBACKEND=agg  # [osx and linux]
+    - py.test --pyargs refnx -v --duration=0  # [osx and win]
+    # can't get the pyqt GUI test to run for some reason, not even with xvfb
+    # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
 
   imports:
     - refnx
