@@ -56,12 +56,13 @@ test:
     - tqdm
     - pyqt >=5
     - periodictable
-    - pytest-xvfb
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
+    - py.test --pyargs refnx -v --duration=0  # [osx and win]
+    # can't get the pyqt GUI test to run for some reason, not even with xvfb
     # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - py.test --pyargs refnx -v --duration=0
+    - python setup.py test -a refnx/analysis -a refnx/dataset -a refnx/reduce -a refnx/util -a refnx/_lib -a refnx/reflect/test  # [linux]
 
   imports:
     - refnx
