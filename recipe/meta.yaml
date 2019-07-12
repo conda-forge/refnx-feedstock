@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.7" %}
-{% set sha256 = "038790e9e2446a5e53747a8ae5771b49b0fbf641e7cc2fe03feaee3c4a7a3d53" %}
+{% set version = "0.1.8" %}
+{% set sha256 = "41264a5d339abc4391a2d9f75998aed72fd04ae2c444cc3e8ea315bbed95b8a9" %}
 
 
 package:
@@ -60,10 +60,10 @@ test:
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
-    - py.test --pyargs refnx -v --duration=0  # [osx and win]
+    - py.test --pyargs refnx -v --durations=0  # [osx and win]
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
     # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
 
   imports:
     - refnx
