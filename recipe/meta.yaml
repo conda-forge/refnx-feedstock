@@ -60,10 +60,10 @@ test:
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
-    - py.test --pyargs refnx -v --duration=0  # [osx and win]
+    - py.test --pyargs refnx -v --durations=0  # [osx and win]
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
     # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
 
   imports:
     - refnx
