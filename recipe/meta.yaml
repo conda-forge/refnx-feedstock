@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.8" %}
-{% set sha256 = "41264a5d339abc4391a2d9f75998aed72fd04ae2c444cc3e8ea315bbed95b8a9" %}
+{% set version = "0.1.9" %}
+{% set sha256 = "007dc465a962086f6a19f0bac5d4ce279e5e2316408a8652af3aa0161c5f04f6" %}
 
 
 package:
@@ -26,6 +26,7 @@ requirements:
     - {{ cdt('libselinux') }}  # [linux]
     - {{ cdt('libxdamage') }}  # [linux]
     - {{ cdt('libxxf86vm') }}  # [linux]
+    - llvm-openmp  # [osx]
 
   host:
     - python
@@ -33,11 +34,13 @@ requirements:
     - cython
     - setuptools
     - xorg-libxfixes  # [linux]
+    - llvm-openmp  # [osx]
 
   run:
     - python
     - {{ pin_compatible('numpy') }}
     - scipy
+    - llvm-openmp  # [osx]
 
 test:
   requires:
