@@ -26,6 +26,7 @@ requirements:
     - {{ cdt('libselinux') }}  # [linux]
     - {{ cdt('libxdamage') }}  # [linux]
     - {{ cdt('libxxf86vm') }}  # [linux]
+    - llvm-openmp  # [osx]
 
   host:
     - python
@@ -33,11 +34,13 @@ requirements:
     - cython
     - setuptools
     - xorg-libxfixes  # [linux]
+    - llvm-openmp  # [osx]
 
   run:
     - python
     - {{ pin_compatible('numpy') }}
     - scipy
+    - llvm-openmp  # [osx]
 
 test:
   requires:
