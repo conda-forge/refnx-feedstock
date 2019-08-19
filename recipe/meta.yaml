@@ -16,6 +16,10 @@ build:
   number: 0
 
   skip: true  # [py27]
+  script_env:
+    - CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"  # [osx]
+    - CXXFLAGS="CXXFLAGS -Xpreprocessor -fopenmp"  # [osx]
+    - LDFLAGS="$LDFLAGS -lomp"
 
 requirements:
   build:
