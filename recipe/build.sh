@@ -1,5 +1,10 @@
 #!/bin/bash
 
+export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
+export CXXFLAGS="CXXFLAGS -Xpreprocessor -fopenmp"
+export LDFLAGS="$LDFLAGS -lomp"
+
+
 python setup.py install --single-version-externally-managed --record=record.txt
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
