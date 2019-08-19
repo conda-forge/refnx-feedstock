@@ -1,8 +1,11 @@
 #!/bin/bash
 
-export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
-export CXXFLAGS="CXXFLAGS -Xpreprocessor -fopenmp"
-export LDFLAGS="$LDFLAGS -lomp"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+    export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
+    export CXXFLAGS="CXXFLAGS -Xpreprocessor -fopenmp"
+    export LDFLAGS="$LDFLAGS -lomp"
+fi
 
 
 python setup.py install --single-version-externally-managed --record=record.txt
