@@ -5,3 +5,4 @@ libXdamage
 libXxf86vm
 xorg-x11-server-Xvfb
 gtk2-devel
+xorg-x11-server-Xorg
