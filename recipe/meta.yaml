@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.11" %}
-{% set sha256 = "eeb4a910a07037c25ee0dbbeb5f7b2e44294c4e61e04f12d68c295cd735f2fda" %}
+{% set version = "0.1.14" %}
+{% set sha256 = "4052496a0939cbe88f4e96e89540f83d27eecd08dff4293ae237f7be5b020710" %}
 
 
 package:
@@ -75,7 +75,7 @@ about:
   home: https://github.com/refnx/refnx
   license: BSD 3-Clause
   license_file: LICENSE
-  summary: 'Neutron and X-ray Reflectometry Analysis'
+  summary: Neutron and X-ray Reflectometry Analysis
   doc_url: https://refnx.github.io
 
 extra:
