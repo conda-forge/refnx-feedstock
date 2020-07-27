@@ -45,7 +45,7 @@ requirements:
 test:
   requires:
     - pytest
-    - pytest-qt
+    # - pytest-qt
     # - uncertainties
     - scipy>=1.2.0
     # - xlrd
@@ -57,7 +57,7 @@ test:
     - corner
     - tqdm
     # try using pyqt from defaults instead of conda-forge
-    - pyqt >=5  # [osx and win]
+    - pyqt >=5
     - periodictable
 
   commands:
@@ -69,11 +69,9 @@ test:
 
     # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
     # don't bother to test reduction code. This is already comprehensively tested.
-    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
-    - pytest --pyargs refnx.reflect.test.test_reflect --pyargs refnx.reflect.test.test_structure --pyargs refnx.reflect.test.test_spline --pyargs refnx.reflect.test.test_interface
-    - pytest --pyargs refnx.reflect.test.test__interactive_modeller
-    - pytest --pyargs refnx.reflect._app  # [osx and win]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect._app'  # [linux]
+    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util --pyargs refnx.reflect.test
+    # - pytest --pyargs refnx.reflect._app  # [osx and win]
+    # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect._app'  # [linux]
 
   imports:
     - refnx
