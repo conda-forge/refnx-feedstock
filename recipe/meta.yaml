@@ -52,13 +52,13 @@ test:
     # - pandas
     # - h5py
     - matplotlib
-    # - ipywidgets
-    # - traitlets
+    - ipywidgets
+    - traitlets
     - corner
     - tqdm
     # try using pyqt from defaults instead of conda-forge
     # - pyqt >=5  # [osx and win]
-    # - periodictable
+    - periodictable
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
@@ -69,8 +69,9 @@ test:
 
     # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
     # don't bother to test reduction code. This is already comprehensively tested.
-    - pytest --pyargs refnx.reflect.test.test_reflect --pyargs refnx.reflect.test.test_structure --pyargs refnx.reflect.test.test_spline --pyargs refnx.reflect.test.test_interface
     - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
+    - pytest --pyargs refnx.reflect.test.test_reflect --pyargs refnx.reflect.test.test_structure --pyargs refnx.reflect.test.test_spline --pyargs refnx.reflect.test.test_interface
+    - pytest --pyargs refnx.reflect.test.test__interactive_modeller
 
   imports:
     - refnx
