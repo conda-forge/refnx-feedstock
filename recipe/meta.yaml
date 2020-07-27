@@ -75,7 +75,7 @@ about:
   home: https://github.com/refnx/refnx
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE.txt
+  license_file: LICENSE
   summary: Neutron and X-ray Reflectometry Analysis
   doc_url: https://refnx.github.io
 
