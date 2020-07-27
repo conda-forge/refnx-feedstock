@@ -45,35 +45,35 @@ requirements:
 test:
   requires:
     - pytest
-    - pytest-qt
-    - nose
-    - uncertainties
+    # - pytest-qt
+    # - uncertainties
     - scipy>=1.2.0
-    - xlrd
-    - pandas
-    - h5py
+    # - xlrd
+    # - pandas
+    # - h5py
     - matplotlib
-    - ipywidgets
-    - traitlets
+    # - ipywidgets
+    # - traitlets
     - corner
-    - tqdm
+    # - tqdm
     # try using pyqt from defaults instead of conda-forge
-    - pyqt >=5  # [osx and win]
-    - periodictable
+    # - pyqt >=5  # [osx and win]
+    # - periodictable
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
-    - py.test --pyargs refnx -v --durations=0  # [osx and win]
+    # - py.test --pyargs refnx -v --durations=0  # [osx and win]
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
-    # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
+    ## - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
+    - pytest refnx/reflect/test/test_reflect.py refnx/analysis refnx/dataset refnx/_lib refnx/util
 
   imports:
     - refnx
 
 about:
   home: https://github.com/refnx/refnx
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_file: LICENSE
   summary: Neutron and X-ray Reflectometry Analysis
   doc_url: https://refnx.github.io
