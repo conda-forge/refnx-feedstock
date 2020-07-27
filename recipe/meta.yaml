@@ -71,7 +71,7 @@ test:
     # don't bother to test reduction code. This is already comprehensively tested.
     - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
     - pytest --pyargs refnx.reflect  # [osx and win]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
+    - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
 
   imports:
     - refnx
