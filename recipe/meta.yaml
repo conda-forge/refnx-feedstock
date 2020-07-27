@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.15" %}
-{% set sha256 = "b5621e21e04afe36ed7fede71a065362f66cc7362ba277add7d9496abbc6d9c9" %}
+{% set version = "0.1.16" %}
+{% set sha256 = "b43e72fde7f72580243ed3db533e110d49125b6f1ba3f555e550a7d9e6c32594" %}
 
 
 package:
@@ -46,34 +46,39 @@ test:
   requires:
     - pytest
     - pytest-qt
-    - nose
-    - uncertainties
+    # - uncertainties
     - scipy>=1.2.0
-    - xlrd
-    - pandas
-    - h5py
+    # - xlrd
+    # - pandas
+    # - h5py
     - matplotlib
     - ipywidgets
     - traitlets
     - corner
     - tqdm
     # try using pyqt from defaults instead of conda-forge
-    - pyqt >=5  # [osx and win]
+    - pyqt >=5
     - periodictable
 
   commands:
     - export MPLBACKEND=agg  # [osx and linux]
-    - py.test --pyargs refnx -v --durations=0  # [osx and win]
+    # - py.test --pyargs refnx -v --durations=0  # [osx and win]
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
-    # - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
+    ## - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
+    # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
+
+    # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
+    # don't bother to test reduction code. This is already comprehensively tested.
+    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
+    - pytest --pyargs refnx.reflect  # [osx and win]
+    - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
 
   imports:
     - refnx
 
 about:
   home: https://github.com/refnx/refnx
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_file: LICENSE
   summary: Neutron and X-ray Reflectometry Analysis
   doc_url: https://refnx.github.io
