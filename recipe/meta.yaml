@@ -55,7 +55,7 @@ test:
     # - ipywidgets
     # - traitlets
     - corner
-    # - tqdm
+    - tqdm
     # try using pyqt from defaults instead of conda-forge
     # - pyqt >=5  # [osx and win]
     # - periodictable
@@ -66,7 +66,11 @@ test:
     # can't get the pyqt GUI test to run for some reason, not even with xvfb
     ## - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
     # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
-    - pytest --pyargs refnx.reflect.test.test_reflect --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
+
+    # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
+    # don't bother to test reduction code. This is already comprehensively tested.
+    - pytest --pyargs refnx.reflect.test.test_reflect --pyargs refnx.reflect.test.test_structure --pyargs refnx.reflect.test.test_spline --pyargs refnx.reflect.test.test_interface
+    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
 
   imports:
     - refnx
