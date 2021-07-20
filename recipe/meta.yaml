@@ -45,7 +45,7 @@ requirements:
 test:
   requires:
     - pytest
-    - pytest-qt
+    - pytest-qt  # [osx and win]
     # - uncertainties
     - scipy>=1.2.0
     # - xlrd
