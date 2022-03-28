@@ -1,18 +1,18 @@
 {% set name = "refnx" %}
-{% set version = "0.1.24" %}
-{% set sha256 = "4d702005f2dc9803fa9d21ae14b44f86d41ffd734a801b07644675d87c12a7da" %}
+{% set version = "0.1.28" %}
+{% set sha256 = "f09a59729d5e59d5fb1198cdfee48a30952ae50e667e47cea16385f5cfcb305b" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: refnx-maintenance-v{{ version }}.zip
-  url: https://github.com/refnx/refnx/archive/refs/heads/maintenance-v{{ version }}.zip
+  fn: refnx-{{ version }}.zip
+  url: https://github.com/refnx/refnx/archive/refs/tags/v{{ version }}.zip
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
 
   skip: true  # [py==27]
 
