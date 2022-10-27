@@ -69,8 +69,13 @@ test:
     # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
     # don't bother to test reduction code. This is already comprehensively tested.
     - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util
-    - pytest --pyargs refnx.reflect  # [osx and win]
-    - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
+    #- pytest --pyargs refnx.reflect  # [osx and win]
+    - pytest --pyargs refnx.reflect.test.test_reflect
+    - pytest --pyargs refnx.reflect.test.test_structure
+    - pytest --pyargs refnx.reflect.test.test_spline
+    - pytest --pyargs refnx.reflect.test.test_interface
+
+    # - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
 
   imports:
     - refnx
