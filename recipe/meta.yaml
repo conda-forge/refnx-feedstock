@@ -57,8 +57,7 @@ test:
     - tqdm
     - attrs
     - qtpy
-    # try using pyqt from defaults instead of conda-forge
-    - pyqt >=6
+    - pyside6
     - periodictable
 
   commands:
