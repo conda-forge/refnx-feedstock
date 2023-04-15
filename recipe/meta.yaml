@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.32" %}
-{% set sha256 = "0c0eaf4b92c8a267d866bc0aa6a101bd0aa1775f4d40d1d2cfa1a65b05887030" %}
+{% set version = "0.1.33" %}
+{% set sha256 = "720b9964a852f1cd63cb0fded41215de4cc5f92b8165c1b0de4e88e1ffe5e051" %}
 
 package:
   name: {{ name }}
@@ -55,8 +55,9 @@ test:
     - traitlets
     - corner
     - tqdm
-    # try using pyqt from defaults instead of conda-forge
-    - pyqt >=5
+    - attrs
+    - qtpy
+    - pyside6
     - periodictable
 
   commands:
