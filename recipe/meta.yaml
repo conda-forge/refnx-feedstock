@@ -69,7 +69,7 @@ test:
 
     # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
     # don't bother to test reduction code. This is already comprehensively tested.
-    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util # [not py==38]
+    - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util  # [not py==38]
     - pytest --pyargs refnx.reflect  # [osx and win]
     - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect'  # [linux]
 
