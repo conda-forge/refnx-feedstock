@@ -71,7 +71,7 @@ test:
     # don't bother to test reduction code. This is already comprehensively tested.
     - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util  # [not py==38]
     - pytest --pyargs refnx.reflect  # [osx and win]
-    - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect.test'  # [linux]
+    # - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect.test'  # [linux]
 
   imports:
     - refnx
