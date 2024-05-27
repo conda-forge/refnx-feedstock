@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
 
   skip: true  # [py<310]
 
@@ -20,6 +20,7 @@ requirements:
   build:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
@@ -38,7 +39,6 @@ requirements:
 
   run:
     - python
-    - {{ pin_compatible('numpy') }}
     - scipy
     - llvm-openmp  # [osx]
 
