@@ -3,7 +3,7 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
     export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
-    export CXXFLAGS="CXXFLAGS -Xpreprocessor -fopenmp"
+    export CXXFLAGS="$CXXFLAGS -Xpreprocessor -fopenmp"
     export LDFLAGS="$LDFLAGS -lomp"
 fi
 
