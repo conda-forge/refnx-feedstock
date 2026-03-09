@@ -14,7 +14,7 @@ source:
     - 0001-cross-compile.patch
 
 build:
-  number: 1
+  number: 2
 
   skip: true  # [py<310]
 
@@ -23,11 +23,6 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
     - llvm-openmp  # [osx]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - python                              # [build_platform != target_platform]
@@ -39,7 +34,6 @@ requirements:
     - numpy
     - cython
     - setuptools
-    - xorg-libxfixes  # [linux]
     - llvm-openmp  # [osx]
 
   run:
@@ -52,7 +46,7 @@ test:
     - pytest
     - pytest-qt  # [osx and win]
     # - uncertainties
-    - scipy>=1.2.0
+    - scipy >=1.2.0
     # - xlrd
     # - pandas
     # - h5py
