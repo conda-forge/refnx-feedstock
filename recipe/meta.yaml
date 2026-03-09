@@ -61,17 +61,7 @@ test:
     - periodictable
 
   commands:
-    - export MPLBACKEND=agg  # [osx and linux]
-    # - py.test --pyargs refnx -v --durations=0  # [osx and win]
-    # can't get the pyqt GUI test to run for some reason, not even with xvfb
-    ## - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
-
-    # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
-    # don't bother to test reduction code. This is already comprehensively tested.
-    # - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util  # [not py==38]
-    # - pytest --pyargs refnx.reflect  # [osx and win]
-    # - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect.test'  # [linux]
+    - pytest --pyargs refnx.reflect.tests.test_reflect --pyargs refnx.analysis
 
   imports:
     - refnx
