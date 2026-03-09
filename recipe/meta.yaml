@@ -21,19 +21,16 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - llvm-openmp  # [osx]
 
   host:
     - python
     - numpy
     - cython
     - setuptools
-    - llvm-openmp  # [osx]
 
   run:
     - python
     - scipy
-    - llvm-openmp  # [osx]
 
 test:
   requires:
