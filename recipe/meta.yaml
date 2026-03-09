@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
 
   skip: true  # [py<310]
 
@@ -46,7 +46,7 @@ test:
     - pytest
     - pytest-qt  # [osx and win]
     # - uncertainties
-    - scipy>=1.2.0
+    - scipy >=1.2.0
     # - xlrd
     # - pandas
     # - h5py
