@@ -14,7 +14,7 @@ source:
     - 0001-cross-compile.patch
 
 build:
-  number: 1
+  number: 2
 
   skip: true  # [py<310]
 
@@ -23,11 +23,6 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
     - llvm-openmp  # [osx]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - python                              # [build_platform != target_platform]
@@ -39,7 +34,6 @@ requirements:
     - numpy
     - cython
     - setuptools
-    - xorg-libxfixes  # [linux]
     - llvm-openmp  # [osx]
 
   run:
@@ -52,7 +46,7 @@ test:
     - pytest
     - pytest-qt  # [osx and win]
     # - uncertainties
-    - scipy>=1.2.0
+    - scipy >=1.2.0
     # - xlrd
     # - pandas
     # - h5py
@@ -67,17 +61,7 @@ test:
     - periodictable
 
   commands:
-    - export MPLBACKEND=agg  # [osx and linux]
-    # - py.test --pyargs refnx -v --durations=0  # [osx and win]
-    # can't get the pyqt GUI test to run for some reason, not even with xvfb
-    ## - xvfb-run -a bash -c 'py.test --pyargs refnx -v --duration=0'  # [linux]
-    # - conda install -y -c defaults pyqt; xvfb-run -w 3 -d bash -c 'py.test --pyargs refnx -v --durations=0'  # [linux]
-
-    # 0.1.16 detail individual tests to avoid use of packages that have conda-forge conflicts.
-    # don't bother to test reduction code. This is already comprehensively tested.
-    # - pytest --pyargs refnx.analysis --pyargs refnx.dataset --pyargs refnx._lib --pyargs refnx.util  # [not py==38]
-    # - pytest --pyargs refnx.reflect  # [osx and win]
-    # - xvfb-run -w 3 -d bash -c 'pytest --pyargs refnx.reflect.test'  # [linux]
+    - python -c "import refnx;refnx.test(tests=['refnx.reflect.tests.test_reflect'])"
 
   imports:
     - refnx
