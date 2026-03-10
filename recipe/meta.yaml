@@ -61,7 +61,7 @@ test:
     - periodictable
 
   commands:
-    - py.test --pyargs refnx.reflect.tests.test_reflect --pyargs refnx.analysis
+    - python -c "import refnx;refnx.reflect.test()"
 
   imports:
     - refnx
