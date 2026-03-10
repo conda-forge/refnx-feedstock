@@ -61,7 +61,7 @@ test:
     - periodictable
 
   commands:
-    - mkdir tmp && cd tmp && pytest --pyargs refnx.reflect.tests.test_reflect --pyargs refnx.analysis
+    - py.test --pyargs refnx.reflect.tests.test_reflect --pyargs refnx.analysis
 
   imports:
     - refnx
