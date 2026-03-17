@@ -10,8 +10,6 @@ source:
   fn: refnx-{{ version }}.zip
   url: https://github.com/refnx/refnx/archive/refs/tags/v{{ version }}.zip
   sha256: {{ sha256 }}
-  patches:
-    - 0001-cross-compile.patch
 
 build:
   number: 2
