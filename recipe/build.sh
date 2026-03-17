@@ -8,7 +8,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 
-$PYTHON setup.py install --single-version-externally-managed --record=record.txt
+"%PYTHON%" -m pip install .
+
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
 # This will allow them to be run on environment activation.
