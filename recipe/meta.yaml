@@ -26,12 +26,12 @@ requirements:
     - llvm-openmp  # [osx]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - python                              # [build_platform != target_platform]
-    - numpy                               # [build_platform != target_platform]
+    - numpy >=2.0.0                       # [build_platform != target_platform]
     - cython                              # [build_platform != target_platform]
 
   host:
     - python
-    - numpy
+    - numpy >=2.0.0
     - cython
     - setuptools
     - llvm-openmp  # [osx]
