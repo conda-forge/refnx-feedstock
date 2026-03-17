@@ -1,0 +1,82 @@
+schema_version: 1
+
+context:
+  name: refnx
+  version: "0.1.61"
+  sha256: c81005a2db2b91100cd4d9a6bf3f6e382b5714181a338c58bcdd08334993c74a
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/refnx/refnx/archive/refs/tags/v${{ version }}.zip
+  sha256: ${{ sha256 }}
+  file_name: refnx-${{ version }}.zip
+  patches:
+    - 0001-cross-compile.patch
+
+build:
+  number: 3
+  skip: match(python, "<3.10")
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - if: osx
+      then: llvm-openmp
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: numpy
+    - if: build_platform != target_platform
+      then: cython
+  host:
+    - python
+    - numpy
+    - cython
+    - setuptools
+    - if: osx
+      then: llvm-openmp
+  run:
+    - python
+    - scipy
+    - if: osx
+      then: llvm-openmp
+
+tests:
+  - python:
+      imports:
+        - refnx
+  - requirements:
+      run:
+        - pytest
+        - if: osx and win
+          then: pytest-qt
+        - scipy >=1.2.0
+        - matplotlib
+        - ipywidgets
+        - traitlets
+        - corner
+        - tqdm
+        - attrs
+        - qtpy
+        - pyside6
+        - periodictable
+    script:
+      - python -c "import refnx;refnx.test(tests=['refnx.reflect.tests.test_reflect'])"
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Neutron and X-ray Reflectometry Analysis
+  homepage: https://github.com/refnx/refnx
+  documentation: https://refnx.github.io
+
+extra:
+  recipe-maintainers:
+    - andyfaff
