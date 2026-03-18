@@ -9,7 +9,7 @@ Package license: BSD-3-Clause
 
 Summary: Neutron and X-ray Reflectometry Analysis
 
-Documentation: https://refnx.github.io
+Documentation: https://refnx.github.io/
 
 Current build status
 ====================
