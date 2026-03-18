@@ -7,6 +7,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export LDFLAGS="$LDFLAGS -lomp"
 fi
 
+mkdir builddir
+
 if [[ $build_platform != $target_platform ]]; then
     # write to separate cross-file to not interfere with default cross-python activation, c.f.
     # https://github.com/conda-forge/cross-python-feedstock/blob/91d3c9cf/recipe/activate-cross-python.sh#L111-L125
@@ -24,12 +26,13 @@ if [[ $build_platform != $target_platform ]]; then
     echo "cpp_args = ['-target', 'arm64-apple-darwin']" >> $SRC_DIR/refnx_cross_file.txt
     export MESON_ARGS="$MESON_ARGS --cross-file=$SRC_DIR/refnx_cross_file.txt"
     $PYTHON -m pip uninstall ninja
+    meson setup builddir --prefix=$SRC_DIR/build-install
+    ninja -v -C builddir
+    meson install -C builddir
 fi
 
-mkdir builddir
-
 # -wnx flags mean: --wheel --no-isolation --skip-dependency-check
-$PYTHON -m build -w -n -v -x \
+$PYTHON -m build -w -n -vv -x \
     -Cbuilddir=builddir \
     -Csetup-args=${MESON_ARGS// / -Csetup-args=} \
     || (cat builddir/meson-logs/meson-log.txt && exit 1)
