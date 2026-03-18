@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: refnx
   version: "0.1.62"
-  sha256: 0f9bbb7af14b2a0a585ef77ceaecd07dee45cd3d7f18e5b805fc61812ac19a65
+  sha256: 3e21751662cf675df569ce637c36ae8431cfaf6e08743edeca64b8489972280d
   numpy: "2.0.0"
 
 package:
@@ -11,9 +11,8 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/refnx/refnx/archive/refs/tags/v${{ version }}.zip
+  url: https://files.pythonhosted.org/packages/source/r/refnx/refnx-${{ version }}.tar.gz
   sha256: ${{ sha256 }}
-  file_name: refnx-${{ version }}.zip
 
 build:
   number: 1
