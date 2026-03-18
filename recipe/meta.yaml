@@ -14,7 +14,7 @@ source:
 build:
   number: 0
 
-  skip: true  # [py<311 or win or linux]
+  skip: true  # [py<311]
 
 
 {% set numpy = "2.0.0" %}
