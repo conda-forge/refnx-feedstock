@@ -1,11 +1,11 @@
 #!/bin/bash
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
+set -ex
+#if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
   #    export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
   #    export CXXFLAGS="$CXXFLAGS -Xpreprocessor -fopenmp"
   #    export LDFLAGS="$LDFLAGS -lomp"
-fi
+#fi
 
 mkdir builddir
 
