@@ -53,6 +53,7 @@ requirements:
   run:
     - python
     - scipy
+    - orsopy
     - if: osx
       then: llvm-openmp
 
