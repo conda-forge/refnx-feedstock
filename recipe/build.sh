@@ -2,14 +2,21 @@
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
-    export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
-    export CXXFLAGS="$CXXFLAGS -Xpreprocessor -fopenmp"
-    export LDFLAGS="$LDFLAGS -lomp"
+  #    export CFLAGS="$CFLAGS -Xpreprocessor -fopenmp"
+  #    export CXXFLAGS="$CXXFLAGS -Xpreprocessor -fopenmp"
+  #    export LDFLAGS="$LDFLAGS -lomp"
 fi
 
 mkdir builddir
 
 if [[ $build_platform != $target_platform ]]; then
+    # write to separate cross-file to not interfere with default cross-python activation, c.f.
+    # https://github.com/conda-forge/cross-python-feedstock/blob/91d3c9cf/recipe/activate-cross-python.sh#L111-L125
+    echo "[binaries]"                                   > $SRC_DIR/refnx_cross_file.txt
+    # Forces use of --free-threading for f2py, which otherwise goes missing in cross compilation; see #314
+    echo "numpy-config = '${PREFIX}/bin/numpy-config'" >> $SRC_DIR/refnx_cross_file.txt
+    export MESON_ARGS="$MESON_ARGS --cross-file=$SRC_DIR/refnx_cross_file.txt"
+
     # write to separate cross-file to not interfere with default cross-python activation, c.f.
     # https://github.com/conda-forge/cross-python-feedstock/blob/91d3c9cf/recipe/activate-cross-python.sh#L111-L125
     #    echo "[binaries]"                                   >> $SRC_DIR/refnx_cross_file.txt
@@ -25,12 +32,6 @@ if [[ $build_platform != $target_platform ]]; then
     #    echo "c_args = ['-target', 'arm64-apple-darwin']"   >> $SRC_DIR/refnx_cross_file.txt
     #    echo "cpp_args = ['-target', 'arm64-apple-darwin']" >> $SRC_DIR/refnx_cross_file.txt
     #    export MESON_ARGS="$MESON_ARGS --cross-file=$SRC_DIR/refnx_cross_file.txt"
-    echo "============================================"
-    cat $BUILD_PREFIX/meson_cross_file.txt
-    $PYTHON -m pip uninstall ninja
-    meson $MESON_ARGS setup builddir --prefix=$SRC_DIR/build-install
-    ninja -v -C builddir
-    meson $MESON_ARGS -C builddir
 fi
 
 # -wnx flags mean: --wheel --no-isolation --skip-dependency-check
