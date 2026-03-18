@@ -15,7 +15,7 @@ $PYTHON -m build -w -n -x \
     -Csetup-args=${MESON_ARGS// / -Csetup-args=} \
     || (cat builddir/meson-logs/meson-log.txt && exit 1)
 
-$python -m pip install dist/refnx*.whl
+$PYTHON -m pip install dist/refnx*.whl
 
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
