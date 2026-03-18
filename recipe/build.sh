@@ -15,7 +15,7 @@ if [[ $build_platform != $target_platform ]]; then
     echo "cpp=arm64-apple-darwin20.0.0-clang++"         >> $SRC_DIR/refnx_cross_file.txt
 
     echo "[host_machine]"                               >> $SRC_DIR/refnx_cross_file.txt
-    echo "cpu=arm64"                                    >> $SRC_DIR/refnx_cross_file.txt
+    echo "cpu='arm64'"                                  >> $SRC_DIR/refnx_cross_file.txt
     echo "system='darwin'"                              >> $SRC_DIR/refnx_cross_file.txt
     echo "cpu_family='arm'"                             >> $SRC_DIR/refnx_cross_file.txt
 

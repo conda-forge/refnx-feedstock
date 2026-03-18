@@ -14,7 +14,7 @@ source:
 build:
   number: 0
 
-  skip: true  # [py<311]
+  skip: true  # [py<311 or win or linux]
 
 
 {% set numpy = "2.0.0" %}
@@ -30,13 +30,13 @@ requirements:
     - python                              # [build_platform != target_platform]
     - numpy >={{ numpy }}                 # [build_platform != target_platform]
     - cython                              # [build_platform != target_platform]
-    - ninja
 
   host:
     - python
     - numpy >={{ numpy }}
     - cython
     - meson-python
+    - ninja
     - pip
     - python-build
     - llvm-openmp  # [osx]
