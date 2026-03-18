@@ -3,7 +3,6 @@ set -ex
 
 mkdir builddir
 ls -al
-echo $SRC_DIR
 
 if [[ $build_platform != $target_platform ]]; then
     # write to separate cross-file to not interfere with default cross-python activation, c.f.
