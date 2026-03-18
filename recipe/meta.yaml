@@ -1,6 +1,6 @@
 {% set name = "refnx" %}
-{% set version = "0.1.61" %}
-{% set sha256 = "c81005a2db2b91100cd4d9a6bf3f6e382b5714181a338c58bcdd08334993c74a" %}
+{% set version = "0.1.62" %}
+{% set sha256 = "0f9bbb7af14b2a0a585ef77ceaecd07dee45cd3d7f18e5b805fc61812ac19a65" %}
 
 package:
   name: {{ name }}
@@ -10,13 +10,15 @@ source:
   fn: refnx-{{ version }}.zip
   url: https://github.com/refnx/refnx/archive/refs/tags/v{{ version }}.zip
   sha256: {{ sha256 }}
-  patches:
-    - 0001-cross-compile.patch
 
 build:
-  number: 2
+  number: 0
 
-  skip: true  # [py<310]
+  skip: true  # [py<311]
+
+
+{% set numpy = "2.0.0" %}
+
 
 requirements:
   build:
@@ -26,14 +28,19 @@ requirements:
     - llvm-openmp  # [osx]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - python                              # [build_platform != target_platform]
-    - numpy                               # [build_platform != target_platform]
+    - numpy >={{ numpy }}                 # [build_platform != target_platform]
     - cython                              # [build_platform != target_platform]
+    - meson-python                        # [build_platform != target_platform]
+    - ninja                               # [build_platform != target_platform]
 
   host:
     - python
-    - numpy
+    - numpy >={{ numpy }}
     - cython
-    - setuptools
+    - meson-python
+    - ninja
+    - pip
+    - python-build
     - llvm-openmp  # [osx]
 
   run:

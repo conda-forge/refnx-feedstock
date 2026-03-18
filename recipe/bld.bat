@@ -7,5 +7,10 @@ FOR %%F IN (activate deactivate) DO (
     COPY %RECIPE_DIR%\%%F.bat %PREFIX%\etc\conda\%%F.d\refnx_%%F.bat
 )
 
-"%PYTHON%" setup.py install --single-version-externally-managed --record=record.txt
+%PYTHON% -m build -w -n -v -x -Cbuilddir=builddir
+for /f %%f in ('dir /b /S .\dist') do (
+    %PYTHON% -m pip install %%f
+    if %ERRORLEVEL% neq 0 exit 1
+)
+
 if errorlevel 1 exit 1
