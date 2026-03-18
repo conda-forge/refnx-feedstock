@@ -14,7 +14,7 @@ source:
 build:
   number: 0
 
-  skip: true  # [py<310]
+  skip: true  # [py<311]
 
 
 {% set numpy = "2.0.0" %}
@@ -28,7 +28,7 @@ requirements:
     - llvm-openmp  # [osx]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - python                              # [build_platform != target_platform]
-    - numpy >={{ numpy }}                   # [build_platform != target_platform]
+    - numpy >={{ numpy }}                 # [build_platform != target_platform]
     - cython                              # [build_platform != target_platform]
 
   host:
@@ -36,6 +36,8 @@ requirements:
     - numpy >={{ numpy }}
     - cython
     - meson-python
+    - pip
+    - python-build
     - llvm-openmp  # [osx]
 
   run:

@@ -7,8 +7,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export LDFLAGS="$LDFLAGS -lomp"
 fi
 
+mkdir builddir
 
-"%PYTHON%" -m pip install .
+# -wnx flags mean: --wheel --no-isolation --skip-dependency-check
+$PYTHON -m build -w -n -x \
+    -Cbuilddir=builddir \
+    -Csetup-args=${MESON_ARGS// / -Csetup-args=} \
+    || (cat builddir/meson-logs/meson-log.txt && exit 1)
+
+$python -m pip install dist/refnx*.whl
 
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.

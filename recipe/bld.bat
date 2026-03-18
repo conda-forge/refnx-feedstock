@@ -7,5 +7,7 @@ FOR %%F IN (activate deactivate) DO (
     COPY %RECIPE_DIR%\%%F.bat %PREFIX%\etc\conda\%%F.d\refnx_%%F.bat
 )
 
-"%PYTHON%" -m pip install .
+%PYTHON% -m build -w -n -x -Cbuilddir=builddir
+%PYTHON% -m pip install dist/refnx*.whl
+
 if errorlevel 1 exit 1
