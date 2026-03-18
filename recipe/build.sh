@@ -3,6 +3,8 @@ set -ex
 
 mkdir builddir
 ls -al
+echo $SRC_DIR
+
 if [[ $build_platform != $target_platform ]]; then
     # write to separate cross-file to not interfere with default cross-python activation, c.f.
     # https://github.com/conda-forge/cross-python-feedstock/blob/91d3c9cf/recipe/activate-cross-python.sh#L111-L125
