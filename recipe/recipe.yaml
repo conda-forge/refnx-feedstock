@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: refnx
-  version: "0.1.62"
-  sha256: 3e21751662cf675df569ce637c36ae8431cfaf6e08743edeca64b8489972280d
+  version: "0.1.63"
+  sha256: 1782542622889ba726138c480e8025ff0bcaca01e553a40792830f2f379f94ec
   numpy: "2.0.0"
 
 package:
@@ -15,7 +15,7 @@ source:
   sha256: ${{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: match(python, "<3.11")
   script:
     # rattler-build figures out the {.sh,.bat} extensions
@@ -29,17 +29,13 @@ requirements:
     - if: osx
       then: llvm-openmp
     - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: numpy >=${{ numpy }}
-    - if: build_platform != target_platform
-      then: cython
-    - if: build_platform != target_platform
-      then: meson-python
-    - if: build_platform != target_platform
-      then: ninja
+      then:
+        - cross-python_${{ target_platform }}
+        - python
+        - numpy >=${{ numpy }}
+        - cython
+        - meson-python
+        - ninja
   host:
     - python
     - numpy >=${{ numpy }}
