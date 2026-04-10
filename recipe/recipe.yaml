@@ -17,9 +17,9 @@ source:
 
 build:
   number: 1
+  skip: is_abi3 and not python_min
   python:
-    version_independent: true
-  skip: match(python, "!=3.11")
+    version_independent: ${{ is_abi3 }}
   script:
     # rattler-build figures out the {.sh,.bat} extensions
     - build
@@ -34,7 +34,8 @@ requirements:
     - if: build_platform != target_platform
       then:
         - python ${{ python_min }}.*
-        - python-abi3 ${{ python_min }}.*
+        - if: is_abi3
+          then: python-abi3
         - cross-python_${{ target_platform }}
         - numpy >=${{ numpy }}
         - cython
@@ -42,7 +43,8 @@ requirements:
         - ninja
   host:
     - python ${{ python_min }}.*
-    - python-abi3 ${{ python_min }}.*
+    - if: is_abi3
+      then: python-abi3
     - numpy >=${{ numpy }}
     - cython
     - meson-python
