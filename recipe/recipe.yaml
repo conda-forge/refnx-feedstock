@@ -32,14 +32,14 @@ requirements:
     - if: build_platform != target_platform
       then:
         - cross-python_${{ target_platform }}
-        - python ${{ python_min }}.*
+        - python
         - numpy >=${{ numpy }}
         - cython
         - meson-python
         - ninja
   host:
-    - python-abi3 ${{ python_min }}.*
-    - python ${{ python_min }}.*
+    - python-abi3
+    - python
     - numpy >=${{ numpy }}
     - cython
     - meson-python
