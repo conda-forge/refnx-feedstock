@@ -5,7 +5,7 @@ context:
   version: "0.1.63"
   sha256: 1782542622889ba726138c480e8025ff0bcaca01e553a40792830f2f379f94ec
   numpy: "2.0.0"
-  python_min: 3.11
+  python_min: "3.11"
 
 package:
   name: ${{ name }}
@@ -17,8 +17,7 @@ source:
 
 build:
   number: 1
-  python_version_independent: true    # [is_abi3]
-  skip: True                          # [is_abi3 and not is_python_min]
+  python_version_independent: true
   script:
     # rattler-build figures out the {.sh,.bat} extensions
     - build
@@ -33,14 +32,14 @@ requirements:
     - if: build_platform != target_platform
       then:
         - cross-python_${{ target_platform }}
-        - python
+        - python ${{ python_min }}.*
         - numpy >=${{ numpy }}
         - cython
         - meson-python
         - ninja
   host:
-    - python-abi3       # [is_abi3]
-    - python
+    - python-abi3 ${{ python_min }}.*
+    - python ${{ python_min }}.*
     - numpy >=${{ numpy }}
     - cython
     - meson-python
@@ -50,7 +49,7 @@ requirements:
     - if: osx
       then: llvm-openmp
   run:
-    - python
+    - python >=${{ python_min }}.*
     - scipy
     - orsopy
     - if: osx
