@@ -5,6 +5,7 @@ context:
   version: "0.1.63"
   sha256: 1782542622889ba726138c480e8025ff0bcaca01e553a40792830f2f379f94ec
   numpy: "2.0.0"
+  python_min: 3.11
 
 package:
   name: ${{ name }}
@@ -15,8 +16,9 @@ source:
   sha256: ${{ sha256 }}
 
 build:
-  number: 0
-  skip: match(python, "<3.11")
+  number: 1
+  python_version_independent: true    # [is_abi3]
+  skip: True                          # [is_abi3 and not is_python_min]
   script:
     # rattler-build figures out the {.sh,.bat} extensions
     - build
@@ -37,6 +39,7 @@ requirements:
         - meson-python
         - ninja
   host:
+    - python-abi3       # [is_abi3]
     - python
     - numpy >=${{ numpy }}
     - cython
