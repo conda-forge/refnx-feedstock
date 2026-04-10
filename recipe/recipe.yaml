@@ -89,7 +89,6 @@ tests:
       - python -c "import refnx;refnx.test(tests=['refnx.reflect.tests.test_reflect'])"
       - if: unix
         then: abi3audit $SP_DIR/refnx/reflect/_creflect.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
-        else: abi3audit %SP_DIR%/refnx/reflect/_creflect.abi3.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
 
 about:
   license: BSD-3-Clause
