@@ -5,6 +5,7 @@ context:
   version: "0.1.63"
   sha256: 1782542622889ba726138c480e8025ff0bcaca01e553a40792830f2f379f94ec
   numpy: "2.0.0"
+  python_min: "3.11"
 
 package:
   name: ${{ name }}
@@ -15,8 +16,10 @@ source:
   sha256: ${{ sha256 }}
 
 build:
-  number: 0
-  skip: match(python, "<3.11")
+  number: 1
+  skip: is_abi3 and not python_min
+  python:
+    version_independent: ${{ is_abi3 }}
   script:
     # rattler-build figures out the {.sh,.bat} extensions
     - build
@@ -30,14 +33,18 @@ requirements:
       then: llvm-openmp
     - if: build_platform != target_platform
       then:
+        - python ${{ python_min }}.*
+        - if: is_abi3
+          then: python-abi3
         - cross-python_${{ target_platform }}
-        - python
         - numpy >=${{ numpy }}
         - cython
         - meson-python
         - ninja
   host:
-    - python
+    - python ${{ python_min }}.*
+    - if: is_abi3
+      then: python-abi3
     - numpy >=${{ numpy }}
     - cython
     - meson-python
@@ -47,7 +54,7 @@ requirements:
     - if: osx
       then: llvm-openmp
   run:
-    - python
+    - python >=${{ python_min }}
     - scipy
     - orsopy
     - if: osx
@@ -57,11 +64,17 @@ tests:
   - python:
       imports:
         - refnx
+      python_version:
+        - if: is_abi3
+          then: ${{ python_min }}.*
+        - "*"
   - requirements:
       run:
         - pytest
         - if: osx and win
           then: pytest-qt
+        - if: is_abi3
+          then: abi3audit
         - scipy >=1.2.0
         - matplotlib
         - ipywidgets
@@ -74,6 +87,8 @@ tests:
         - periodictable
     script:
       - python -c "import refnx;refnx.test(tests=['refnx.reflect.tests.test_reflect'])"
+      - if: unix
+        then: abi3audit $SP_DIR/refnx/reflect/_creflect.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
 
 about:
   license: BSD-3-Clause
