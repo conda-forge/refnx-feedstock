@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: refnx
-  version: "0.1.63"
-  sha256: 1782542622889ba726138c480e8025ff0bcaca01e553a40792830f2f379f94ec
+  version: "0.1.64"
+  sha256: 1b022a87d4bf7e4f5156fd599260df961c8ec106946c9f6028c90331b6107b8e
   numpy: "2.0.0"
   python_min: "3.11"
 
@@ -16,7 +16,7 @@ source:
   sha256: ${{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: is_abi3 and not python_min
   python:
     version_independent: ${{ is_abi3 }}
