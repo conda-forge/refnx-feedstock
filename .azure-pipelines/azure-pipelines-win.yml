@@ -8,8 +8,18 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
-      win_64_:
-        CONFIG: win_64_
+      win_64_is_abi3false:
+        CONFIG: win_64_is_abi3false
+        UPLOAD_PACKAGES: 'True'
+        build_platform: win-64
+        build_workspace_dir: D:\\bld\\
+        free_disk_space: skip
+        pagefile_size: 0
+        resize_partitions: false
+        store_build_artifacts: false
+        tools_install_dir: D:\Miniforge
+      win_64_is_abi3true:
+        CONFIG: win_64_is_abi3true
         UPLOAD_PACKAGES: 'True'
         build_platform: win-64
         build_workspace_dir: D:\\bld\\
